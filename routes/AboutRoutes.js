@@ -12,10 +12,10 @@ const GetAnswerById = require('../controllers/About/answer/GetAnswerById');
 const CreateAnswer = require('../controllers/About/answer/CreateAnswer');
 const UpdateAnswer = require('../controllers/About/answer/UpdateAnswer');
 const DeleteAnswer = require('../controllers/About/answer/DeleteAnswer');
-const GetCrewById = require('../controllers/About/crew/GetCrewById');
-const CreateCrew = require('../controllers/About/crew/CreateCrew');
-const UpdateCrew = require('../controllers/About/crew/UpdateCrew');
-const DeleteCrew = require('../controllers/About/crew/DeleteCrew');
+const GetCrewById = require('../controllers/About/Crew/GetCrewById');
+const CreateCrew = require('../controllers/About/Crew/CreateCrew');
+const UpdateCrew = require('../controllers/About/Crew/UpdateCrew');
+const DeleteCrew = require('../controllers/About/Crew/DeleteCrew');
 const GetAllAboutSchema = require('../controllers/About/GetAllAboutSchema');
 
 // Get & Post & Put & Delete About
