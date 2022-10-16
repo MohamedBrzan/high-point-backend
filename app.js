@@ -27,7 +27,7 @@ dotenv.config({ path: 'config/.env' });
 
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://high-point-backend.onrender.com/',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'HEAD'],
     credentials: true,
   })
@@ -50,8 +50,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/api/v1/about', AboutRoutes);
-
 app.use('/api/v1/services', ServicesRoutes);
 
 app.use('/api/v1/solutions', SolutionsRoutes);
@@ -66,13 +64,15 @@ app.use('/api/v1/documentation', DocumentationRoutes);
 
 app.use('/api/v1/product', ProductRoutes);
 
+app.use('/api/v1/about', AboutRoutes);
+
 app.use('/api/v1/quote', QuoteRoutes);
 
 app.use('/api/v1/career', CareerRoutes);
 
 app.use('/api/v1/job_applicant', JobApplicantRoutes);
 
-// app.use('/api/v1/auth', GoogleAuthRoutes);
+app.use('/api/v1/auth', GoogleAuthRoutes);
 
 app.use('/api/v1', UserRoutes);
 
