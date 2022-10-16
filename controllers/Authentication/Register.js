@@ -1,7 +1,7 @@
 const AsyncHandler = require('../../middleWare/AsyncHandler');
 const ErrorHandler = require('../../middleWare/ErrorHandler');
 const User = require('../../models/User/User');
-const SendToken = require('g:/coding/working-on/realstate/middleware/SendToken');
+const SendToken = require('../../utils/SendToken');
 
 module.exports = AsyncHandler(async (req, res, next) => {
   const { avatar, name, email, password, rePassword, isAdmin } = req.body;
