@@ -17,10 +17,10 @@ const CreateCrew = require('../controllers/About/Crew/CreateCrew');
 const UpdateCrew = require('../controllers/About/Crew/UpdateCrew');
 const DeleteCrew = require('../controllers/About/Crew/DeleteCrew');
 
-const GetAnswerById = require('../controllers/About/Answer/GetAnswerById');
-const CreateAnswer = require('../controllers/About/Answer/CreateAnswer');
-const UpdateAnswer = require('../controllers/About/Answer/UpdateAnswer');
-const DeleteAnswer = require('../controllers/About/Answer/DeleteAnswer');
+const GetAnswerById = require('../controllers/About/answer/GetAnswerById');
+const CreateAnswer = require('../controllers/About/answer/CreateAnswer');
+const UpdateAnswer = require('../controllers/About/answer/UpdateAnswer');
+const DeleteAnswer = require('../controllers/About/answer/DeleteAnswer');
 
 // Get & Post & Put & Delete About
 
