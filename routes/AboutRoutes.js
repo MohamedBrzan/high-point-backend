@@ -13,9 +13,9 @@ const UpdateMission = require('../controllers/About/Mission/UpdateMission');
 const DeleteMission = require('../controllers/About/Mission/DeleteMission');
 
 // const GetAnswerById = require('../controllers/About/Answer/GetAnswerById');
-// const CreateAnswer = require('../controllers/About/Answer/CreateAnswer');
-// const UpdateAnswer = require('../controllers/About/Answer/UpdateAnswer');
-// const DeleteAnswer = require('../controllers/About/Answer/DeleteAnswer');
+const CreateAnswer = require('../controllers/About/Answer/CreateAnswer');
+const UpdateAnswer = require('../controllers/About/Answer/UpdateAnswer');
+const DeleteAnswer = require('../controllers/About/Answer/DeleteAnswer');
 
 const GetCrewById = require('../controllers/About/Crew/GetCrewById');
 const CreateCrew = require('../controllers/About/Crew/CreateCrew');
@@ -44,14 +44,14 @@ router
   .put(UpdateMission)
   .delete(DeleteMission);
 
-// // Get & Post & Put & Delete Product Answer
+// Get & Post & Put & Delete Product Answer
 
-// router
-//   .route('/answer')
-//   .get(GetAnswerById)
-//   .post(CreateAnswer)
-//   .put(UpdateAnswer)
-//   .delete(DeleteAnswer);
+router
+  .route('/answer')
+  //   .get(GetAnswerById)
+  .post(CreateAnswer)
+  .put(UpdateAnswer)
+  .delete(DeleteAnswer);
 
 // Get & Post & Put & Delete Product Crew
 
