@@ -12,7 +12,7 @@ const CreateMission = require('../controllers/About/Mission/CreateMission');
 const UpdateMission = require('../controllers/About/Mission/UpdateMission');
 const DeleteMission = require('../controllers/About/Mission/DeleteMission');
 
-// const GetAnswerById = require('../controllers/About/Answer/GetAnswerById');
+const GetAnswerById = require('../controllers/About/Answer/GetAnswerById');
 const CreateAnswer = require('../controllers/About/Answer/CreateAnswer');
 const UpdateAnswer = require('../controllers/About/Answer/UpdateAnswer');
 const DeleteAnswer = require('../controllers/About/Answer/DeleteAnswer');
@@ -48,7 +48,7 @@ router
 
 router
   .route('/answer')
-  //   .get(GetAnswerById)
+  .get(GetAnswerById)
   .post(CreateAnswer)
   .put(UpdateAnswer)
   .delete(DeleteAnswer);
