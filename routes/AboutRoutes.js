@@ -1,5 +1,6 @@
 const router = require('express').Router();
 
+const GetAllAboutSchema = require('../controllers/About/GetAllAboutSchema');
 const GetAboutById = require('../controllers/About/GetAboutById');
 const CreateAbout = require('../controllers/About/CreateAbout');
 const UpdateAbout = require('../controllers/About/UpdateAbout');
@@ -8,15 +9,14 @@ const GetMissionById = require('../controllers/About/Mission/GetMissionById');
 const CreateMission = require('../controllers/About/Mission/CreateMission');
 const UpdateMission = require('../controllers/About/Mission/UpdateMission');
 const DeleteMission = require('../controllers/About/Mission/DeleteMission');
-const GetAnswerById = require('../controllers/About/answer/GetAnswerById');
-const CreateAnswer = require('../controllers/About/answer/CreateAnswer');
-const UpdateAnswer = require('../controllers/About/answer/UpdateAnswer');
-const DeleteAnswer = require('../controllers/About/answer/DeleteAnswer');
+const GetAnswerById = require('../controllers/About/Answer/GetAnswerById');
+const CreateAnswer = require('../controllers/About/Answer/CreateAnswer');
+const UpdateAnswer = require('../controllers/About/Answer/UpdateAnswer');
+const DeleteAnswer = require('../controllers/About/Answer/DeleteAnswer');
 const GetCrewById = require('../controllers/About/Crew/GetCrewById');
 const CreateCrew = require('../controllers/About/Crew/CreateCrew');
 const UpdateCrew = require('../controllers/About/Crew/UpdateCrew');
 const DeleteCrew = require('../controllers/About/Crew/DeleteCrew');
-const GetAllAboutSchema = require('../controllers/About/GetAllAboutSchema');
 
 // Get & Post & Put & Delete About
 
