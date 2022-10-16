@@ -3,7 +3,7 @@ const ErrorHandler = require('../../../middleWare/ErrorHandler');
 const About = require('../../../models/About/About');
 
 module.exports = AsyncHandler(async (req, res, next) => {
-  const { about_schema_id, answer_id } = req.body;
+  const { about_schema_id, answer_id } = req.params;
 
   let about = await About.findById(about_schema_id);
 
