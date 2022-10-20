@@ -4,10 +4,10 @@ const TabSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
     title_ar: { type: String, required: true },
-    subjects: [
+    solutions: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Service_Subject',
+        ref: 'Service_Solution',
       },
     ],
   },

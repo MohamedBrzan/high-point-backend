@@ -38,12 +38,7 @@ const ServiceSchema = new mongoose.Schema(
     },
     intro_text: { type: String, required: true },
     intro_text_ar: { type: String, required: true },
-    cards: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Service_Card',
-      },
-    ],
+
     footer_text: {
       first_footer_text: { type: String, required: true },
       last_footer_text: { type: String, required: true },

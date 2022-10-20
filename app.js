@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 const cors = require('cors');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
@@ -11,6 +12,9 @@ const passportSetup = require('./controllers/Passport/PassportSetup');
 const ErrorMessage = require('./middleWare/ErrorMessage');
 const UserRoutes = require('./routes/UserRoutes');
 const ServicesRoutes = require('./routes/ServicesRoutes');
+const ServicesCardsRoutes = require('./routes/ServicesCardsRoutes');
+const ServicesTabsRoutes = require('./routes/ServicesTabsRoutes');
+const ServicesSolutionsRoutes = require('./routes/ServicesSolutionsRoutes');
 const SolutionsRoutes = require('./routes/SolutionsRoutes');
 const ContactUsRoutes = require('./routes/ContactUsRoutes');
 const PartnerRoutes = require('./routes/PartnerRoutes');
@@ -27,7 +31,10 @@ dotenv.config({ path: 'config/.env' });
 
 app.use(
   cors({
-    origin: 'https://high-point-backend.onrender.com/',
+    origin: [
+      'http://localhost:3000',
+      'https://high-point-backend.onrender.com/',
+    ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'HEAD'],
     credentials: true,
   })
@@ -46,9 +53,16 @@ app.use(passport.session());
 
 app.use(morgan('dev'));
 app.use(I18n);
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use(express.json({ limit: 5242880 }));
+app.use(express.urlencoded({ extended: true, limit: 5242880 }));
 app.use(cookieParser());
+
+app.use('/api/v1/services/solutions', ServicesSolutionsRoutes);
+
+app.use('/api/v1/services/tabs', ServicesTabsRoutes);
+
+app.use('/api/v1/services/cards', ServicesCardsRoutes);
 
 app.use('/api/v1/services', ServicesRoutes);
 

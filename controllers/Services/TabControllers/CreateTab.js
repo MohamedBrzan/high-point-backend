@@ -1,20 +1,19 @@
 const AsyncHandler = require('../../../middleWare/AsyncHandler');
 const ErrorHandler = require('../../../middleWare/ErrorHandler');
-const Solution = require('../../../models/Service/Service_Solution');
+const Card = require('../../../models/Service/Service_Card');
 const Tab = require('../../../models/Service/Service_Tab');
 
 module.exports = AsyncHandler(async (req, res, next) => {
-  const { solution_id, title, title_ar } = req.body;
+  const { card_id, title, title_ar } = req.body;
 
-  let solution = await Solution.findById(solution_id);
+  let card = await Card.findById(card_id);
 
-  if (!solution)
-    return next(new ErrorHandler(`${req.t('solution_error')}`, 404));
+  if (!card) return next(new ErrorHandler(req.t('card_error'), 404));
 
   const tab = await Tab.create({ title, title_ar });
 
-  solution = await Solution.findByIdAndUpdate(
-    solution_id,
+  card = await Card.findByIdAndUpdate(
+    card_id,
     {
       $push: {
         tabs: tab._id,
@@ -23,5 +22,5 @@ module.exports = AsyncHandler(async (req, res, next) => {
     { new: true, runValidators: true }
   );
 
-  return res.json(solution);
+  return res.json(tab);
 });

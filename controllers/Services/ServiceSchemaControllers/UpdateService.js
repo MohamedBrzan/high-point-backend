@@ -8,7 +8,7 @@ module.exports = AsyncHandler(async (req, res, next) => {
   let serviceSchema = await ServiceSchema.findById(service_schema_id);
 
   if (!serviceSchema)
-    return next(new ErrorHandler(`${req.t('service_schema_error')}`, 404));
+    return next(new ErrorHandler(req.t('service_schema_error'), 404));
 
   serviceSchema = await ServiceSchema.findByIdAndUpdate(
     service_schema_id,

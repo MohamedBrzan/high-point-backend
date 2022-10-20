@@ -7,9 +7,9 @@ module.exports = AsyncHandler(async (req, res, next) => {
   const serviceSchema = await ServiceSchema.findById(service_schema_id);
 
   if (!serviceSchema)
-    return next(new ErrorHandler(`${req.t('service_schema_error')}`, 404));
+    return next(new ErrorHandler(req.t('service_schema_error'), 404));
 
   await ServiceSchema.findByIdAndRemove(service_schema_id);
 
-  return res.json({ message: `${req.t('service_schema_deleted')}` });
+  return res.json({ message: req.t('service_schema_deleted') });
 });

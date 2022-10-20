@@ -5,6 +5,7 @@ module.exports = (err, req, res, next) => {
   err.message = err.message || 'Internal Server Error';
 
   if (err.name === 'CastError') {
+    console.log(err)
     const message = `Resource Not Found . This ${err.path} : (${err.value}) Is Invalid`;
 
     err = new ErrorHandler(message, 400);
