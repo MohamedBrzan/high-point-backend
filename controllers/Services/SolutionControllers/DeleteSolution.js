@@ -8,7 +8,7 @@ module.exports = AsyncHandler(async (req, res, next) => {
 
   let tab = await Tab.findById(tab_id);
 
-  if (!tab) return next(new ErrorHandler(req.t('solutions_group_error'), 404));
+  if (!tab) return next(new ErrorHandler(req.t('tab_error'), 404));
 
   let solution = await Solution.findById(solution_id);
 

@@ -12,9 +12,9 @@ router.route('/').get(GetAllServicesTabs).post(CreateTab);
 
 // Get & Post & Put Tab
 
-router.route('/:tab_id').get(GetTabById).put(UpdateTab).delete(DeleteTab);
+router.route('/:tab_id').get(GetTabById).put(UpdateTab);
 
-//  Delete Tab
+// Delete Tab
 
 router.route('/:card_id/:tab_id').delete(DeleteTab);
 
