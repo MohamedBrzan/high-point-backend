@@ -12,7 +12,7 @@ module.exports = AsyncHandler(async (req, res, next) => {
 
   const token = user.generateToken();
 
-  const url = `http://localhost:3000/reset_password/${user._id}/${token}`;
+  const url = `http://localhost:3000/authentication/reset_password/${user._id}/${token}`;
 
   sendEmail(email, url);
 

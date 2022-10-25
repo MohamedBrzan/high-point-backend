@@ -16,6 +16,9 @@ const ServicesCardsRoutes = require('./routes/ServicesCardsRoutes');
 const ServicesTabsRoutes = require('./routes/ServicesTabsRoutes');
 const ServicesSolutionsRoutes = require('./routes/ServicesSolutionsRoutes');
 const SolutionsRoutes = require('./routes/SolutionsRoutes');
+const SolutionsCardsRoutes = require('./routes/SolutionsCardsRoutes');
+const SolutionsTabsRoutes = require('./routes/SolutionsTabsRoutes');
+const SolutionsSolutionsRoutes = require('./routes/SolutionsSolutionsRoutes');
 const ContactUsRoutes = require('./routes/ContactUsRoutes');
 const PartnerRoutes = require('./routes/PartnerRoutes');
 const BlogRoutes = require('./routes/BlogRoutes');
@@ -65,6 +68,12 @@ app.use('/api/v1/services/tabs', ServicesTabsRoutes);
 app.use('/api/v1/services/cards', ServicesCardsRoutes);
 
 app.use('/api/v1/services', ServicesRoutes);
+
+app.use('/api/v1/solutions/solutions', SolutionsSolutionsRoutes);
+
+app.use('/api/v1/solutions/tabs', SolutionsTabsRoutes);
+
+app.use('/api/v1/solutions/cards', SolutionsCardsRoutes);
 
 app.use('/api/v1/solutions', SolutionsRoutes);
 

@@ -1,33 +1,28 @@
 const AsyncHandler = require('../../../middleWare/AsyncHandler');
 const ErrorHandler = require('../../../middleWare/ErrorHandler');
+const Tab = require('../../../models/Solution/Solution_Tab');
 const Solution = require('../../../models/Solution/Solution_Solution');
-const SolutionsGroup = require('../../../models/Solution/Solution_Solutions_Group');
 
 module.exports = AsyncHandler(async (req, res, next) => {
-  const {
-    solutions_group_id,
-    image,
-    image_text,
-    image_text_ar,
-    description,
-    description_ar,
-  } = req.body;
+  const { tab_id } = req.params;
+  const { title, title_ar, image, description, description_ar } = req.body;
 
-  let solutionsGroup = await SolutionsGroup.findById(solutions_group_id);
+  // const image = req.file;
 
-  if (!solutionsGroup)
-    return next(new ErrorHandler(`${req.t('solutions_group_error')}`, 404));
+  let tab = await Tab.findById(tab_id);
+
+  if (!tab) return next(new ErrorHandler(req.t('tab_error'), 404));
 
   const solution = await Solution.create({
+    title,
+    title_ar,
     image,
-    image_text,
-    image_text_ar,
     description,
     description_ar,
   });
 
-  solutionsGroup = await SolutionsGroup.findByIdAndUpdate(
-    solutions_group_id,
+  tab = await Tab.findByIdAndUpdate(
+    tab_id,
     {
       $push: {
         solutions: solution._id,
@@ -36,5 +31,5 @@ module.exports = AsyncHandler(async (req, res, next) => {
     { new: true, runValidators: true }
   );
 
-  return res.json(solutionsGroup);
+  return res.json(solution);
 });

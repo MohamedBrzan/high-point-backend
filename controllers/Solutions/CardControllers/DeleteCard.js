@@ -1,34 +1,39 @@
 const AsyncHandler = require('../../../middleWare/AsyncHandler');
 const ErrorHandler = require('../../../middleWare/ErrorHandler');
 const Card = require('../../../models/Solution/Solution_Card');
-const SolutionSchema = require('../../../models/Solution/Solution_Schema');
+const Tab = require('../../../models/Solution/Solution_Tab');
+const Solution = require('../../../models/Solution/Solution_Solution');
 
 module.exports = AsyncHandler(async (req, res, next) => {
-  const { solution_schema_id, card_id } = req.body;
-
-  let solutionSchema = await SolutionSchema.findById(solution_schema_id);
-
-  if (!solutionSchema)
-    return next(new ErrorHandler(`${req.t('solution_schema_error')}`, 404));
+  const { card_id } = req.params;
 
   let card = await Card.findById(card_id);
 
-  if (!card) return next(new ErrorHandler(`${req.t('card_error')}`, 404));
+  if (!card) return next(new ErrorHandler(req.t('card_error'), 404));
 
-  solutionSchema = await SolutionSchema.findByIdAndUpdate(
-    solution_schema_id,
-    {
-      $pull: {
-        cards: card_id,
-      },
-    },
-    {
-      new: true,
-      runValidators: true,
+  const allTabs = [];
+
+  allTabs.push(...card.tabs);
+
+  if (card.tabs.length > 0) {
+    for (let i = 0; i < allTabs.length; i++) {
+      const tabs = allTabs[i].toString();
+      const findTab = await Tab.findById(tabs).populate({
+        path: 'solutions',
+        select: '_id',
+      });
+      if (findTab.solutions.length > 0) {
+        for (let z = 0; z < findTab.solutions.length; z++) {
+          const solutions = findTab.solutions[z]._id.toString();
+
+          await Solution.deleteMany({ _id: solutions });
+        }
+      }
+
+      await Tab.deleteMany({ _id: tabs });
     }
-  );
+  }
 
   card = await Card.findByIdAndRemove(card_id);
-
-  return res.json({ message: `${req.t('card_deleted')}` });
+  return res.json({ message: req.t('card_deleted') });
 });

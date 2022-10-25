@@ -1,5 +1,6 @@
 {
   "password_not_match": "Password Does Not Match",
+  "password_weak": "Password Too Weak, Please Try Again",
   "user_registered": "User Already Registered",
   "login_error": "Wrong Email Or Password Please Try Again",
   "logged_out": "User Already Logged Out",

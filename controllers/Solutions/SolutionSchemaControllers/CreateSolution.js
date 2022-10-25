@@ -1,5 +1,5 @@
 const AsyncHandler = require('../../../middleWare/AsyncHandler');
-const ServiceSchema = require('../../../models/Service/Service_Schema');
+const SolutionSchema = require('../../../models/Solution/Solution_Schema');
 
 module.exports = AsyncHandler(async (req, res, next) => {
   const {
@@ -85,7 +85,7 @@ module.exports = AsyncHandler(async (req, res, next) => {
     last_footer_text_ar,
   };
 
-  const new_service_schema = {
+  const new_solution_schema = {
     title,
     title_ar,
     head_image,
@@ -100,7 +100,7 @@ module.exports = AsyncHandler(async (req, res, next) => {
     footer_text_ar,
   };
 
-  const service = await ServiceSchema.create(new_service_schema);
+  const solution = await SolutionSchema.create(new_solution_schema);
 
-  return res.json(service);
+  return res.json(solution);
 });

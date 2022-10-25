@@ -10,6 +10,7 @@ const ServiceSchema = new mongoose.Schema(
       first_title_text_ar: { type: String, required: true },
       last_title_text_ar: { type: String, required: true },
     },
+    head_image: { type: String, required: true },
     sub_title: {
       first_sub_title_text: { type: String, required: true },
       last_sub_title_text: { type: String, required: true },
@@ -39,6 +40,7 @@ const ServiceSchema = new mongoose.Schema(
     intro_text: { type: String, required: true },
     intro_text_ar: { type: String, required: true },
 
+    footer_image: { type: String, required: true },
     footer_text: {
       first_footer_text: { type: String, required: true },
       last_footer_text: { type: String, required: true },

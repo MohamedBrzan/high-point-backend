@@ -4,9 +4,9 @@ const User = require('../../models/User/User');
 const SendToken = require('../../utils/SendToken');
 
 module.exports = AsyncHandler(async (req, res, next) => {
-  const { avatar, name, email, password, rePassword, isAdmin } = req.body;
+  const { avatar, name, email, password, confirmPassword, isAdmin } = req.body;
 
-  if (password !== rePassword)
+  if (password !== confirmPassword)
     return next(new ErrorHandler(`${req.t('password_not_match')}`, 404));
 
   let user = await User.findOne({ email }).select('+password');
