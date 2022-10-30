@@ -1,33 +1,27 @@
 const AsyncHandler = require('../../middleWare/AsyncHandler');
-const ErrorHandler = require('../../middleWare/ErrorHandler');
-const User = require('../../models/User/User');
-const Blog = require('../../models/Blog/Blog');
+const NewsRoom = require('../../models/NewsRoom/NewsRoom');
 
 module.exports = AsyncHandler(async (req, res, next) => {
   const {
-    card_image,
+    images,
     title,
     title_ar,
     sub_description,
     sub_description_ar,
     description,
     description_ar,
-    head_images,
-    footer_images,
   } = req.body;
 
-  const blog = await Blog.create({
+  const newsRoom = await NewsRoom.create({
     owner: req.user.id,
-    card_image,
+    images,
     title,
     title_ar,
     sub_description,
     sub_description_ar,
     description,
     description_ar,
-    head_images,
-    footer_images,
   });
 
-  return res.json(blog);
+  return res.json(newsRoom);
 });

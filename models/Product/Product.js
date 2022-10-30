@@ -26,6 +26,9 @@ const ProductSchema = new mongoose.Schema(
 
     video: { type: String, required: true },
 
+    footer_image: { type: String },
+    footer_video: { type: String },
+
     footer_text: { type: String, required: true },
     footer_text_ar: { type: String, required: true },
   },

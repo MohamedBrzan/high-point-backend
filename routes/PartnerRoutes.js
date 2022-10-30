@@ -1,16 +1,20 @@
 const router = require('express').Router();
 
+const GetAllPartners = require('../controllers/Partner/GetAllPartners');
 const GetPartnerById = require('../controllers/Partner/GetPartnerById');
 const CreatePartner = require('../controllers/Partner/CreatePartner');
 const UpdatePartner = require('../controllers/Partner/UpdatePartner');
 const DeletePartner = require('../controllers/Partner/DeletePartner');
 
-// Get & Post & Put & Delete Partner
+// Get & Post Partner
+
+router.route('/').get(GetAllPartners).post(CreatePartner);
+
+//  Get && Put & Delete Partner
 
 router
-  .route('/')
+  .route('/:partner_id')
   .get(GetPartnerById)
-  .post(CreatePartner)
   .put(UpdatePartner)
   .delete(DeletePartner);
 

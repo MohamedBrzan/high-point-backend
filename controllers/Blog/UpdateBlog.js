@@ -3,14 +3,14 @@ const ErrorHandler = require('../../middleWare/ErrorHandler');
 const Blog = require('../../models/Blog/Blog');
 
 module.exports = AsyncHandler(async (req, res, next) => {
-  const { blog_schema_id } = req.body;
+  const { blog_id } = req.params;
 
-  let blog = await Blog.findById(blog_schema_id);
+  let blog = await Blog.findById(blog_id);
 
   if (!blog)
-    return next(new ErrorHandler(`${req.t('blog_schema_error')}`, 404));
+    return next(new ErrorHandler(req.t('blog_schema_error'), 404));
 
-  blog = await Blog.findByIdAndUpdate(blog_schema_id, req.body, {
+  blog = await Blog.findByIdAndUpdate(blog_id, req.body, {
     new: true,
     runValidators: true,
   });

@@ -3,8 +3,14 @@ const isEmail = require('validator/lib/isEmail');
 
 const ContactUsSchema = new mongoose.Schema(
   {
-    title: { type: String, required: true },
-    title_ar: { type: String, required: true },
+    title: {
+      first_text: { type: String, required: true },
+      last_text: { type: String, required: true },
+    },
+    title_ar: {
+      first_text_ar: { type: String, required: true },
+      last_text_ar: { type: String, required: true },
+    },
     head_office: {
       location: { type: String, required: true },
       location_ar: { type: String, required: true },
@@ -16,16 +22,9 @@ const ContactUsSchema = new mongoose.Schema(
       question_ar: { type: String, required: true },
       company_email: { type: String, required: true, validate: isEmail },
     },
-    branches: [
-      {
-        type: String,
-      },
-    ],
-    branches_ar: [
-      {
-        type: String,
-      },
-    ],
+    branches: { type: String, required: true },
+
+    branches_ar: { type: String, required: true },
     phone: {
       tel: { type: Number, required: true },
       fax: { type: Number, required: true },

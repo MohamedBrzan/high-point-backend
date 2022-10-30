@@ -3,21 +3,21 @@ const ErrorHandler = require('../../../middleWare/ErrorHandler');
 const Product = require('../../../models/Product/Product');
 
 module.exports = AsyncHandler(async (req, res, next) => {
-  const { product_schema_id, item_id } = req.body;
+  const { product_id, item_id } = req.params;
 
-  let product = await Product.findById(product_schema_id);
+  let product = await Product.findById(product_id);
 
   if (!product)
-    return next(new ErrorHandler(`${req.t('product_schema_error')}`, 404));
+    return next(new ErrorHandler(req.t('product_schema_error'), 404));
 
   const findItem = product.items.find(
     (item) => item._id.toString() === item_id
   );
 
-  if (!findItem) return next(new ErrorHandler(`${req.t('item_error')}`, 404));
+  if (!findItem) return next(new ErrorHandler(req.t('item_error'), 404));
 
   product = await Product.findByIdAndUpdate(
-    product_schema_id,
+    product_id,
     {
       $pull: {
         items: findItem,

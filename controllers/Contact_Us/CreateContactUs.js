@@ -3,11 +3,15 @@ const ContactUs = require('../../models/Contact_Us/Contact_Us');
 
 module.exports = AsyncHandler(async (req, res, next) => {
   const {
-    title,
-    title_ar,
+    first_text,
+    last_text,
+    first_text_ar,
+    last_text_ar,
     location,
     location_ar,
     address,
+    branches,
+    branches_ar,
     address_ar,
     question,
     question_ar,
@@ -15,6 +19,16 @@ module.exports = AsyncHandler(async (req, res, next) => {
     tel,
     fax,
   } = req.body;
+
+  const title = {
+    first_text,
+    last_text,
+  };
+
+  const title_ar = {
+    first_text_ar,
+    last_text_ar,
+  };
 
   const head_office = {
     location,
@@ -37,6 +51,8 @@ module.exports = AsyncHandler(async (req, res, next) => {
   const contactUs = await ContactUs.create({
     title,
     title_ar,
+    branches,
+    branches_ar,
     head_office,
     work_inquiries,
     phone,

@@ -3,16 +3,10 @@ const ErrorHandler = require('../../../middleWare/ErrorHandler');
 const Product = require('../../../models/Product/Product');
 
 module.exports = AsyncHandler(async (req, res, next) => {
-  const {
-    product_schema_id,
-    item_id,
-    item_title,
-    item_title_ar,
-    item_desc,
-    item_desc_ar,
-  } = req.body;
+  const { product_id, item_id } = req.params;
+  const { item_title, item_title_ar, item_desc, item_desc_ar } = req.body;
 
-  let product = await Product.findById(product_schema_id);
+  let product = await Product.findById(product_id);
 
   if (!product)
     return next(new ErrorHandler(`${req.t('product_schema_error')}`, 404));

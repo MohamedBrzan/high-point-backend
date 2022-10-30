@@ -16,6 +16,8 @@ module.exports = AsyncHandler(async (req, res, next) => {
     description,
     description_ar,
     video,
+    footer_image,
+    footer_video,
     footer_text,
     footer_text_ar,
   } = req.body;
@@ -34,6 +36,8 @@ module.exports = AsyncHandler(async (req, res, next) => {
     description,
     description_ar,
     video,
+    footer_image,
+    footer_video,
     footer_text,
     footer_text_ar,
   });

@@ -7,6 +7,8 @@ const PartnerSchema = new mongoose.Schema(
     image: { type: String, required: true },
     country: { type: String, required: true },
     country_ar: { type: String, required: true },
+    continent: { type: String, required: true },
+    continent_ar: { type: String, required: true },
   },
   { timestamps: true }
 );

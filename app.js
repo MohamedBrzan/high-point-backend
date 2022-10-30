@@ -10,6 +10,7 @@ const passport = require('passport');
 const cookieSession = require('cookie-session');
 const passportSetup = require('./controllers/Passport/PassportSetup');
 const ErrorMessage = require('./middleWare/ErrorMessage');
+const ClientMessageRoutes = require('./routes/ClientMessageRoutes');
 const UserRoutes = require('./routes/UserRoutes');
 const ServicesRoutes = require('./routes/ServicesRoutes');
 const ServicesCardsRoutes = require('./routes/ServicesCardsRoutes');
@@ -22,6 +23,7 @@ const SolutionsSolutionsRoutes = require('./routes/SolutionsSolutionsRoutes');
 const ContactUsRoutes = require('./routes/ContactUsRoutes');
 const PartnerRoutes = require('./routes/PartnerRoutes');
 const BlogRoutes = require('./routes/BlogRoutes');
+const NewsRoomRoutes = require('./routes/NewsRoomRoutes');
 const DocumentationRoutes = require('./routes/DocumentationRoutes');
 const ProductRoutes = require('./routes/ProductRoutes');
 const AboutRoutes = require('./routes/AboutRoutes');
@@ -57,9 +59,11 @@ app.use(passport.session());
 app.use(morgan('dev'));
 app.use(I18n);
 app.use('/images', express.static(path.join(__dirname, 'images')));
-app.use(express.json({ limit: 5242880 }));
-app.use(express.urlencoded({ extended: true, limit: 5242880 }));
+app.use(express.json({ limit: 5e7 }));
+app.use(express.urlencoded({ extended: true, limit: 5e7 }));
 app.use(cookieParser());
+
+app.use('/api/v1/client_messages', ClientMessageRoutes);
 
 app.use('/api/v1/services/solutions', ServicesSolutionsRoutes);
 
@@ -83,9 +87,11 @@ app.use('/api/v1/partner', PartnerRoutes);
 
 app.use('/api/v1/blog', BlogRoutes);
 
+app.use('/api/v1/news_room', NewsRoomRoutes);
+
 app.use('/api/v1/documentation', DocumentationRoutes);
 
-app.use('/api/v1/product', ProductRoutes);
+app.use('/api/v1/products', ProductRoutes);
 
 app.use('/api/v1/about', AboutRoutes);
 
