@@ -2,9 +2,8 @@ const AsyncHandler = require('../../../middleWare/AsyncHandler');
 const Documentation = require('../../../models/Documentation/Documentation');
 
 module.exports = AsyncHandler(async (req, res, next) => {
+  const { documentation_id, document_id } = req.params;
   const {
-    documentation_schema_id,
-    document_id,
     tab_title,
     tab_title_ar,
     desc_title,
@@ -13,12 +12,10 @@ module.exports = AsyncHandler(async (req, res, next) => {
     description_ar,
   } = req.body;
 
-  let documentation = await Documentation.findById(documentation_schema_id);
+  const documentation = await Documentation.findById(documentation_id);
 
   if (!documentation)
-    return next(
-      new ErrorHandler(`${req.t('documentation_schema_error')}`, 404)
-    );
+    return next(new ErrorHandler(req.t('documentation_schema_error'), 404));
 
   const findDocument = documentation.document.find(
     (document) => document._id.toString() === document_id
@@ -31,10 +28,10 @@ module.exports = AsyncHandler(async (req, res, next) => {
     findDocument.desc_title_ar = desc_title_ar;
     findDocument.description = description;
     findDocument.description_ar = description_ar;
-    await documentation.save();
 
-    return res.json(documentation);
+    await documentation.save();
+    res.json(findDocument);
   } else {
-    return res.json({ message: `${req.t('document_error')}` });
+    res.json({ message: req.t('document_error') });
   }
 });

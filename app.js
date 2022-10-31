@@ -29,7 +29,7 @@ const ProductRoutes = require('./routes/ProductRoutes');
 const AboutRoutes = require('./routes/AboutRoutes');
 const QuoteRoutes = require('./routes/QuoteRoutes');
 const CareerRoutes = require('./routes/CareerRoutes');
-const JobApplicantRoutes = require('./routes/JobApplicantRoutes');
+const ApplyJobRoutes = require('./routes/ApplyJobRoutes');
 const GoogleAuthRoutes = require('./routes/GoogleAuthRoutes');
 
 dotenv.config({ path: 'config/.env' });
@@ -59,8 +59,8 @@ app.use(passport.session());
 app.use(morgan('dev'));
 app.use(I18n);
 app.use('/images', express.static(path.join(__dirname, 'images')));
-app.use(express.json({ limit: 5e7 }));
-app.use(express.urlencoded({ extended: true, limit: 5e7 }));
+app.use(express.json({ limit: 16777216 }));
+app.use(express.urlencoded({ extended: true, limit: 16777216 }));
 app.use(cookieParser());
 
 app.use('/api/v1/client_messages', ClientMessageRoutes);
@@ -99,7 +99,7 @@ app.use('/api/v1/quote', QuoteRoutes);
 
 app.use('/api/v1/career', CareerRoutes);
 
-app.use('/api/v1/job_applicant', JobApplicantRoutes);
+app.use('/api/v1/apply_job', ApplyJobRoutes);
 
 app.use('/api/v1/auth', GoogleAuthRoutes);
 

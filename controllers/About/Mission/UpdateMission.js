@@ -3,16 +3,15 @@ const ErrorHandler = require('../../../middleWare/ErrorHandler');
 const About = require('../../../models/About/About');
 
 module.exports = AsyncHandler(async (req, res, next) => {
+  const { about_id, mission_id } = req.params;
   const {
-    about_schema_id,
-    mission_id,
     mission_title,
     mission_title_ar,
     mission_description,
     mission_description_ar,
   } = req.body;
 
-  let about = await About.findById(about_schema_id);
+  let about = await About.findById(about_id);
 
   if (!about)
     return next(new ErrorHandler(`${req.t('about_schema_error')}`, 404));

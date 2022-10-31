@@ -2,8 +2,8 @@ const AsyncHandler = require('../../../middleWare/AsyncHandler');
 const Documentation = require('../../../models/Documentation/Documentation');
 
 module.exports = AsyncHandler(async (req, res, next) => {
+  const { documentation_id } = req.params;
   const {
-    documentation_schema_id,
     tab_title,
     tab_title_ar,
     desc_title,
@@ -21,16 +21,15 @@ module.exports = AsyncHandler(async (req, res, next) => {
     description_ar,
   };
 
-  let documentation = await Documentation.findById(documentation_schema_id);
+  let documentation = await Documentation.findById(documentation_id);
 
   if (!documentation)
     return next(
       new ErrorHandler(`${req.t('documentation_schema_error')}`, 404)
     );
 
-
   documentation = await Documentation.findByIdAndUpdate(
-    documentation_schema_id,
+    documentation_id,
     {
       $push: {
         document: new_document,
@@ -42,5 +41,5 @@ module.exports = AsyncHandler(async (req, res, next) => {
     }
   );
 
-  return res.json(documentation);
+  return res.json(documentation.document);
 });

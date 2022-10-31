@@ -2,9 +2,9 @@ const AsyncHandler = require('../../../middleWare/AsyncHandler');
 const Documentation = require('../../../models/Documentation/Documentation');
 
 module.exports = AsyncHandler(async (req, res, next) => {
-  const { documentation_schema_id, document_id } = req.body;
+  const { documentation_id, document_id } = req.params;
 
-  let documentation = await Documentation.findById(documentation_schema_id);
+  let documentation = await Documentation.findById(documentation_id);
 
   if (!documentation)
     return next(

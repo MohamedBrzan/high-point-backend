@@ -17,6 +17,7 @@ const DocumentationSchema = new mongoose.Schema(
     ],
     footer_text: { type: String, required: true },
     footer_text_ar: { type: String, required: true },
+    footer_image: { type: String, required: true },
   },
   { timestamps: true }
 );

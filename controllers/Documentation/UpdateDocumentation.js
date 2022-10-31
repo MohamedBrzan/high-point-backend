@@ -3,18 +3,23 @@ const ErrorHandler = require('../../middleWare/ErrorHandler');
 const Documentation = require('../../models/Documentation/Documentation');
 
 module.exports = AsyncHandler(async (req, res, next) => {
-  const { documentation_schema_id } = req.body;
+  const { documentation_id } = req.params;
 
-  let documentation = await Documentation.findById(documentation_schema_id);
+  let documentation = await Documentation.findById(documentation_id);
 
   if (!documentation)
     return next(
       new ErrorHandler(`${req.t('documentation_schema_error')}`, 404)
     );
 
-  documentation = await Documentation.findByIdAndRemove(
-    documentation_schema_id
+  documentation = await Documentation.findByIdAndUpdate(
+    documentation_id,
+    req.body,
+    {
+      new: true,
+      runValidators: true,
+    }
   );
 
-  return res.json({ message: `${req.t('documentation_schema_deleted')}` });
+  return res.json(documentation);
 });

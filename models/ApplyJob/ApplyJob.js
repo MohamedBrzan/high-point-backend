@@ -2,14 +2,8 @@ const mongoose = require('mongoose');
 const isEmail = require('validator/lib/isEmail');
 const isInt = require('validator/lib/isInt');
 
-const JobApplicantSchema = new mongoose.Schema(
+const ApplyJobSchema = new mongoose.Schema(
   {
-    title: { type: String, required: true },
-    title_ar: { type: String, required: true },
-
-    sub_title: { type: String, required: true },
-    sub_title_ar: { type: String, required: true },
-
     name: { type: String, required: true },
 
     email: {
@@ -29,11 +23,8 @@ const JobApplicantSchema = new mongoose.Schema(
     },
 
     file: { type: String, required: true },
-
-    rule: { type: String, required: true },
-    rule_ar: { type: String, required: true },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model('Job_Applicant', JobApplicantSchema);
+module.exports = mongoose.model('Apply_Job', ApplyJobSchema);

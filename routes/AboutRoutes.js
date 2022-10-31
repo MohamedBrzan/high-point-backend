@@ -24,41 +24,53 @@ const DeleteAnswer = require('../controllers/About/answer/DeleteAnswer');
 
 // Get & Post & Put & Delete About
 
-router.route('/').get(GetAllAboutSchema);
+router.route('/').get(GetAllAboutSchema).post(CreateAbout);
 
 // Get & Post & Put & Delete About
 
 router
-  .route('/:about_schema_id')
+  .route('/:about_id')
   .get(GetAboutById)
-  .post(CreateAbout)
   .put(UpdateAbout)
   .delete(DeleteAbout);
 
-// Get & Post & Put & Delete Product Mission
+// Get & Post & Put About Mission
+
+router.route('/:about_id/mission').post(CreateMission).delete(DeleteMission);
+
+//  Delete About Mission
 
 router
-  .route('/mission')
+  .route('/:about_id/mission/:mission_id')
   .get(GetMissionById)
-  .post(CreateMission)
   .put(UpdateMission)
   .delete(DeleteMission);
 
-// Get & Post & Put & Delete Product Answer
+// Get & Post & Put & Delete About Answer
+
+router.route('/:about_id/answer').post(CreateAnswer).delete(DeleteAnswer);
+
+//  Delete About Answer
 
 router
-  .route('/answer')
+  .route('/:about_id/answer/:answer_id')
   .get(GetAnswerById)
-  .post(CreateAnswer)
   .put(UpdateAnswer)
   .delete(DeleteAnswer);
 
-// Get & Post & Put & Delete Product Crew
+// Post & Put About Crew
 
 router
-  .route('/crew')
-  .get(GetCrewById)
+  .route('/:about_id/crew')
   .post(CreateCrew)
+
+  .delete(DeleteCrew);
+
+// Get & Delete About Crew
+
+router
+  .route('/:about_id/crew/:crew_id')
+  .get(GetCrewById)
   .put(UpdateCrew)
   .delete(DeleteCrew);
 

@@ -3,25 +3,17 @@ const ErrorHandler = require('../../../middleWare/ErrorHandler');
 const About = require('../../../models/About/About');
 
 module.exports = AsyncHandler(async (req, res, next) => {
-  const {
-    about_schema_id,
-    image,
-    name,
-    name_ar,
-    job_title,
-    job_title_ar,
-    bio,
-    bio_ar,
-  } = req.body;
+  const { about_id } = req.params;
+  const { image, name, name_ar, job_title, job_title_ar, bio, bio_ar } =
+    req.body;
 
-  let about = await About.findById(about_schema_id);
+  let about = await About.findById(about_id);
 
   if (!about)
     return next(new ErrorHandler(`${req.t('about_schema_error')}`, 404));
 
-
   about = await About.findByIdAndUpdate(
-    about_schema_id,
+    about_id,
     {
       $push: {
         'team.crew': {
@@ -41,5 +33,5 @@ module.exports = AsyncHandler(async (req, res, next) => {
     }
   );
 
-  return res.json(about);
+  return res.json(about.team.crew);
 });
