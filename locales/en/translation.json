@@ -10,6 +10,8 @@
   "user_not_logged_in": "Please Login first",
   "about_schema_error": "About Schema Not Found",
   "about_schema_deleted": "About Schema Deleted Successfully",
+  "request_schema_error": "Request Schema Not Found",
+  "request_schema_deleted": "Request Schema Deleted Successfully",
   "client_message_schema_error": "Client Message Schema Not Found",
   "client_message_schema_deleted": "Client Message Schema Deleted Successfully",
   "client_message_error": "This Message Not Found",

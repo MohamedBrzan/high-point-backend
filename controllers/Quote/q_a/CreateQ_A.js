@@ -2,7 +2,8 @@ const AsyncHandler = require('../../../middleWare/AsyncHandler');
 const Quote = require('../../../models/Quote/Quote');
 
 module.exports = AsyncHandler(async (req, res, next) => {
-  const { quote_id, question, answer } = req.body;
+  const { quote_id } = req.params;
+  const { question, answer, question_ar, answer_ar } = req.body;
 
   let quote = await Quote.findById(quote_id);
 
@@ -11,7 +12,9 @@ module.exports = AsyncHandler(async (req, res, next) => {
 
   const q_a = {
     question,
+    question_ar,
     answer,
+    answer_ar,
   };
 
   quote = await Quote.findByIdAndUpdate(

@@ -23,6 +23,7 @@ const SolutionsSolutionsRoutes = require('./routes/SolutionsSolutionsRoutes');
 const ContactUsRoutes = require('./routes/ContactUsRoutes');
 const PartnerRoutes = require('./routes/PartnerRoutes');
 const BlogRoutes = require('./routes/BlogRoutes');
+const RequestRoutes = require('./routes/RequestRoutes');
 const NewsRoomRoutes = require('./routes/NewsRoomRoutes');
 const DocumentationRoutes = require('./routes/DocumentationRoutes');
 const ProductRoutes = require('./routes/ProductRoutes');
@@ -86,6 +87,8 @@ app.use('/api/v1/contact_us', ContactUsRoutes);
 app.use('/api/v1/partner', PartnerRoutes);
 
 app.use('/api/v1/blog', BlogRoutes);
+
+app.use('/api/v1/request', RequestRoutes);
 
 app.use('/api/v1/news_room', NewsRoomRoutes);
 

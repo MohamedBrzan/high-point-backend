@@ -10,6 +10,8 @@
   "user_not_logged_in": "من فضلك قم بتسجيل الدخول أولاً",
   "about_schema_error": "قسم ( نبذه مختصره عننا ) غير موجود",
   "about_schema_deleted": "تم حذف قسم ( نبذه مختصره عننا ) بنجاح",
+  "request_schema_error": "هذا الطلب غير موجود",
+  "request_schema_deleted": "تم حذف الطلب بنجاح",
   "client_message_schema_error": "قسم رسالة العملاء غير موجود",
   "client_message_schema_deleted": "تم حذف قسم رسالة العملاء بنجاح",
   "client_message_error": "الرسالة غير موجود",

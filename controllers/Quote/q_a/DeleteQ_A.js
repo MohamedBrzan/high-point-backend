@@ -2,7 +2,7 @@ const AsyncHandler = require('../../../middleWare/AsyncHandler');
 const Quote = require('../../../models/Quote/Quote');
 
 module.exports = AsyncHandler(async (req, res, next) => {
-  const { quote_id, q_a_id } = req.body;
+  const { quote_id, q_a_id } = req.params;
 
   let quote = await Quote.findById(quote_id);
 

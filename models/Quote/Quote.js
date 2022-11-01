@@ -13,19 +13,15 @@ const QuoteSchema = new mongoose.Schema(
       {
         name: { type: String, required: true },
         name_ar: { type: String, required: true },
-        list: [
-          {
-            item: { type: String, required: true },
-            item_ar: { type: String, required: true },
-          },
-        ],
       },
     ],
 
     q_a: [
       {
         question: { type: String, required: true },
+        question_ar: { type: String, required: true },
         answer: { type: String, required: true },
+        answer_ar: { type: String, required: true },
       },
     ],
 

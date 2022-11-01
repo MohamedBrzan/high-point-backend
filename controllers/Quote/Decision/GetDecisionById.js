@@ -3,7 +3,7 @@ const ErrorHandler = require('../../../middleWare/ErrorHandler');
 const Quote = require('../../../models/Quote/Quote');
 
 module.exports = AsyncHandler(async (req, res, next) => {
-  const { quote_id, decision_id } = req.body;
+  const { quote_id, decision_id } = req.params;
 
   let quote = await Quote.findById(quote_id);
 
