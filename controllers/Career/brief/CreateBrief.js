@@ -7,37 +7,32 @@ module.exports = AsyncHandler(async (req, res, next) => {
   const {
     title,
     title_ar,
-    sub_title,
-    sub_title_ar,
-    description,
-    description_ar,
-    content,
-    content_ar,
+    description_one,
+    description_one_ar,
+    description_two,
+    description_two_ar,
   } = req.body;
 
-  let career = await Career.findById(career_id);
+  const career = await Career.findById(career_id);
 
-  if (!career)
-    return next(new ErrorHandler(`${req.t('career_schema_error')}`, 404));
+  if (!career) return next(new ErrorHandler(req.t('career_schema_error'), 404));
 
-  career = await Career.findByIdAndUpdate(
+  await Career.findByIdAndUpdate(
     career_id,
     {
       $push: {
-        position: {
+        brief: {
           title,
           title_ar,
-          sub_title,
-          sub_title_ar,
-          description,
-          description_ar,
-          content,
-          content_ar,
+          description_one,
+          description_one_ar,
+          description_two,
+          description_two_ar,
         },
       },
     },
     { new: true, runValidators: true }
   );
 
-  return res.json(career.position);
+  return res.json(career.brief);
 });

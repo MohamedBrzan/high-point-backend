@@ -3,18 +3,17 @@ const ErrorHandler = require('../../../middleWare/ErrorHandler');
 const Career = require('../../../models/Career/Career');
 
 module.exports = AsyncHandler(async (req, res, next) => {
-  const { career_id, position_id } = req.params;
+  const { career_id, brief_id } = req.params;
 
   let career = await Career.findById(career_id);
 
   if (!career) return next(new ErrorHandler(req.t('career_schema_error'), 404));
 
-  const findPosition = career.position.find(
-    (position) => position._id.toString() === position_id
+  const findBrief = career.brief.find(
+    (brief) => brief._id.toString() === brief_id
   );
 
-  if (!findPosition)
-    return next(new ErrorHandler(req.t('position_error'), 404));
+  if (!findBrief) return next(new ErrorHandler(req.t('brief_error'), 404));
 
-  return res.json(findPosition);
+  return res.json(findBrief);
 });
