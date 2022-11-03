@@ -15,6 +15,7 @@ const UserRoutes = require('./routes/UserRoutes');
 const ServicesRoutes = require('./routes/ServicesRoutes');
 const ServicesCardsRoutes = require('./routes/ServicesCardsRoutes');
 const ServicesTabsRoutes = require('./routes/ServicesTabsRoutes');
+const InterfaceRoutes = require('./routes/InterfaceRoutes');
 const ServicesSolutionsRoutes = require('./routes/ServicesSolutionsRoutes');
 const SolutionsRoutes = require('./routes/SolutionsRoutes');
 const SolutionsCardsRoutes = require('./routes/SolutionsCardsRoutes');
@@ -63,6 +64,8 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(express.json({ limit: 16777216 }));
 app.use(express.urlencoded({ extended: true, limit: 16777216 }));
 app.use(cookieParser());
+
+app.use('/api/v1/interface', InterfaceRoutes);
 
 app.use('/api/v1/client_messages', ClientMessageRoutes);
 
