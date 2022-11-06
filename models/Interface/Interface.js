@@ -114,8 +114,8 @@ const InterfaceSchema = new mongoose.Schema(
         third_text_ar: { type: String },
         last_text_ar: { type: String },
       },
-      image: { type: String, required: true },
-      video: { type: String, required: true },
+      image: { type: String },
+      video: { type: String },
       solution: [
         {
           title: { type: String, required: true },
@@ -133,6 +133,8 @@ const InterfaceSchema = new mongoose.Schema(
       vertical_logo: { type: String, required: true },
       horizontal_logo: { type: String, required: true },
       logo_img: { type: String, required: true },
+      text: { type: String, required: true },
+      text_ar: { type: String, required: true },
       brief: { type: String, required: true },
       brief_ar: { type: String, required: true },
       btn_one: { type: String, required: true },

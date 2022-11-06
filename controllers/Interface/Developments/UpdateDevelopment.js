@@ -12,13 +12,15 @@ module.exports = AsyncHandler(async (req, res, next) => {
     return next(new ErrorHandler(req.t('interface_schema_error'), 404));
 
   const findDevelopment = interface.about.developments.find(
-    (development) => development._id.toString() === development_id
+    (dev_field) => dev_field._id.toString() === development_id
   );
 
   if (findDevelopment) {
     findDevelopment.field = field;
     findDevelopment.field_ar = field_ar;
     findDevelopment.progress = progress;
+
+    await interface.save();
 
     return res.json(findDevelopment);
   } else {

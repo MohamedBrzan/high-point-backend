@@ -19,6 +19,8 @@ module.exports = AsyncHandler(async (req, res, next) => {
     findProof.image = image;
     findProof.explain = explain;
 
+    await interface.save();
+
     return res.json(findProof);
   } else {
     return next(new ErrorHandler(req.t('proof_error'), 404));

@@ -30,6 +30,8 @@ module.exports = AsyncHandler(async (req, res, next) => {
     findSolution.solution_image = solution_image;
     findSolution.anime_image = anime_image;
 
+    await interface.save();
+
     return res.json(findSolution);
   } else {
     return next(new ErrorHandler(req.t('solution_error'), 404));
