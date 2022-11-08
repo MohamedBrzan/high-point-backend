@@ -5,7 +5,7 @@ const User = require('../../models/User/User');
 module.exports = AsyncHandler(async (req, res, next) => {
   const { user_id } = req.body;
 
-  let user = await User.findById(user_id);
+  let user = await User.findById(user_id).select('_id avatar name isAdmin');
 
   if (!user) return next(new ErrorHandler(`${req.t('user_not_found')}`, 404));
 

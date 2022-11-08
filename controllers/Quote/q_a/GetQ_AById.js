@@ -1,9 +1,13 @@
+const { default: mongoose } = require('mongoose');
 const AsyncHandler = require('../../../middleWare/AsyncHandler');
 const ErrorHandler = require('../../../middleWare/ErrorHandler');
 const Quote = require('../../../models/Quote/Quote');
 
 module.exports = AsyncHandler(async (req, res, next) => {
   const { quote_id, q_a_id } = req.params;
+
+  // add this inside your route
+  if (!mongoose.Types.ObjectId.isValid(quote_id)) return false;
 
   let quote = await Quote.findById(quote_id);
 

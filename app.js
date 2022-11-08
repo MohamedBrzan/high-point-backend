@@ -69,11 +69,11 @@ app.use('/api/v1/interface', InterfaceRoutes);
 
 app.use('/api/v1/client_messages', ClientMessageRoutes);
 
+app.use('/api/v1/services/cards', ServicesCardsRoutes);
+
 app.use('/api/v1/services/solutions', ServicesSolutionsRoutes);
 
 app.use('/api/v1/services/tabs', ServicesTabsRoutes);
-
-app.use('/api/v1/services/cards', ServicesCardsRoutes);
 
 app.use('/api/v1/services', ServicesRoutes);
 

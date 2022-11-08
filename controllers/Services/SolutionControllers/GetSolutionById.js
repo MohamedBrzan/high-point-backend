@@ -1,9 +1,13 @@
+const { default: mongoose } = require('mongoose');
 const AsyncHandler = require('../../../middleWare/AsyncHandler');
 const ErrorHandler = require('../../../middleWare/ErrorHandler');
 const Solution = require('../../../models/Service/Service_Solution');
 
 module.exports = AsyncHandler(async (req, res, next) => {
   const { solution_id } = req.params;
+
+  // add this inside your route
+  if (!mongoose.Types.ObjectId.isValid(solution_id)) return false;
 
   let solution = await Solution.findById(solution_id);
 

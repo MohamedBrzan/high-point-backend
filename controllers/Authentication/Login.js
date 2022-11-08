@@ -14,5 +14,11 @@ module.exports = AsyncHandler(async (req, res, next) => {
 
   if (!isMatch) return next(new ErrorHandler(`${req.t('login_error')}`, 404));
 
+  if (user.isAdmin === true) {
+    user = await User.findOne({ email }).select('-_id avatar name isAdmin');
+  } else {
+    user = await User.findOne({ email }).select('-_id avatar name');
+  }
+
   return SendToken(res, user, 200);
 });
