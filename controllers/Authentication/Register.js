@@ -15,11 +15,5 @@ module.exports = AsyncHandler(async (req, res, next) => {
 
   user = await User.create({ avatar, name, email, password, isAdmin });
 
-  if (isAdmin === true) {
-    user = await User.findOne({ email }).select('-_id avatar name isAdmin');
-  } else {
-    user = await User.findOne({ email }).select('-_id avatar name');
-  }
-
   return SendToken(res, user, 200);
 });

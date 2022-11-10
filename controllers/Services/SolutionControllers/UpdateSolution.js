@@ -4,7 +4,7 @@ const Solution = require('../../../models/Service/Service_Solution');
 
 module.exports = AsyncHandler(async (req, res, next) => {
   const { solution_id } = req.params;
-  const { title, title_ar, image,description, description_ar } = req.body;
+  const { title, title_ar, image, description, description_ar } = req.body;
 
   // const image = req.file;
 

@@ -9,11 +9,13 @@ const GetMyProfile = require('../controllers/User/GetMyProfile');
 const IsAuthenticated = require('../middleWare/IsAuthenticated');
 const ForgotPassword = require('../controllers/Authentication/ForgotPassword');
 const ResetPassword = require('../controllers/Authentication/ResetPassword');
+const GoogleLogin = require('../controllers/Authentication/GoogleLogin');
 
 // Get & Post User
 
 router.route('/register').post(Register);
 router.route('/is_logged').get(IsLogged);
+router.route('/google/login').post(GoogleLogin);
 router.route('/login').post(Login);
 router.route('/logout').get(Logout);
 router.route('/user').get(IsAuthenticated, GetUserById);

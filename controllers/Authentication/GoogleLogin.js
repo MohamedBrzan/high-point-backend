@@ -4,15 +4,11 @@ const User = require('../../models/User/User');
 const SendToken = require('../../utils/SendToken');
 
 module.exports = AsyncHandler(async (req, res, next) => {
-  const { email, password } = req.body;
+  const { email } = req.body;
 
-  let user = await User.findOne({ email }).select('+password');
+  let user = await User.findOne({ email });
 
-  if (!user) return next(new ErrorHandler(`${req.t('login_error')}`, 404));
-
-  const isMatch = await user.isValidPassword(password);
-
-  if (!isMatch) return next(new ErrorHandler(`${req.t('login_error')}`, 404));
+  if (!user) return next(new ErrorHandler(req.t('login_error'), 404));
 
   return SendToken(res, user, 200);
 });

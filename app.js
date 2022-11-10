@@ -33,6 +33,7 @@ const QuoteRoutes = require('./routes/QuoteRoutes');
 const CareerRoutes = require('./routes/CareerRoutes');
 const ApplyJobRoutes = require('./routes/ApplyJobRoutes');
 const GoogleAuthRoutes = require('./routes/GoogleAuthRoutes');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 dotenv.config({ path: 'config/.env' });
 
@@ -47,6 +48,28 @@ app.use(
   })
 );
 
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: `${process.env.GOOGLE_CLIENT_ID}`,
+      clientSecret: `${process.env.GOOGLE_CLIENT_SECRET}`,
+      callbackURL: '/auth/google/callback',
+      scope: ['profile', 'email'],
+    },
+    function (accessToken, refreshToken, profile, callback) {
+      callback(null, profile);
+    }
+  )
+);
+
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
+
 app.use(
   cookieSession({
     name: 'session',
@@ -54,10 +77,8 @@ app.use(
     maxAge: 24 * 60 * 60 * 100,
   })
 );
-
 app.use(passport.initialize());
 app.use(passport.session());
-
 app.use(morgan('dev'));
 app.use(I18n);
 app.use('/images', express.static(path.join(__dirname, 'images')));
@@ -65,25 +86,25 @@ app.use(express.json({ limit: 16777216 }));
 app.use(express.urlencoded({ extended: true, limit: 16777216 }));
 app.use(cookieParser());
 
+app.use('/api/v1/services', ServicesRoutes);
+
+app.use('/api/v1/service/cards', ServicesCardsRoutes);
+
+app.use('/api/v1/service/tabs', ServicesTabsRoutes);
+
+app.use('/api/v1/service/solutions', ServicesSolutionsRoutes);
+
+app.use('/api/v1/solutions', SolutionsRoutes);
+
+app.use('/api/v1/solution/solutions', SolutionsSolutionsRoutes);
+
+app.use('/api/v1/solution/tabs', SolutionsTabsRoutes);
+
+app.use('/api/v1/solution/cards', SolutionsCardsRoutes);
+
 app.use('/api/v1/interface', InterfaceRoutes);
 
 app.use('/api/v1/client_messages', ClientMessageRoutes);
-
-app.use('/api/v1/services/cards', ServicesCardsRoutes);
-
-app.use('/api/v1/services/solutions', ServicesSolutionsRoutes);
-
-app.use('/api/v1/services/tabs', ServicesTabsRoutes);
-
-app.use('/api/v1/services', ServicesRoutes);
-
-app.use('/api/v1/solutions/solutions', SolutionsSolutionsRoutes);
-
-app.use('/api/v1/solutions/tabs', SolutionsTabsRoutes);
-
-app.use('/api/v1/solutions/cards', SolutionsCardsRoutes);
-
-app.use('/api/v1/solutions', SolutionsRoutes);
 
 app.use('/api/v1/contact_us', ContactUsRoutes);
 

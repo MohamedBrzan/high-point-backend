@@ -16,6 +16,10 @@ module.exports = AsyncHandler(async (req, res, next) => {
     footer_images,
   } = req.body;
 
+  const { token } = req.cookies;
+
+  if (!token) return next(new ErrorHandler('token Not Found', 404));
+
   const blog = await Blog.create({
     owner: req.user.id,
     card_image,

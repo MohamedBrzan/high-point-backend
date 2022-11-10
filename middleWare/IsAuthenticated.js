@@ -8,7 +8,8 @@ module.exports = AsyncHandler(async (req, res, next) => {
 
   if (!token) return next(new ErrorHandler('Please Login First', 404));
 
-  const decoded = jwt.verify(token, `${process.env.JWT_SECRET_TOKEN}`);
+  const decoded = jwt.decode(token, `${process.env.JWT_SECRET_TOKEN}`);
+  console.log(decoded);
 
   req.user = await User.findById(decoded.id);
 

@@ -20,6 +20,8 @@ module.exports = AsyncHandler(async (req, res, next) => {
     findSocialLink.name_ar = name_ar;
     findSocialLink.url = url;
 
+    await interface.save();
+
     return res.json(findSocialLink);
   } else {
     return next(new ErrorHandler(req.t('social_link_error'), 404));

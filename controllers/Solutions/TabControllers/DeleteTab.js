@@ -3,13 +3,20 @@ const ErrorHandler = require('../../../middleWare/ErrorHandler');
 const Card = require('../../../models/Solution/Solution_Card');
 const Tab = require('../../../models/Solution/Solution_Tab');
 const Solution = require('../../../models/Solution/Solution_Solution');
+const { default: mongoose } = require('mongoose');
 
 module.exports = AsyncHandler(async (req, res, next) => {
   const { card_id, tab_id } = req.params;
 
+  if (!mongoose.Types.ObjectId.isValid(card_id))
+    return next(new ErrorHandler(req.t('card_error'), 404));
+
   let card = await Card.findById(card_id);
 
   if (!card) return next(new ErrorHandler(req.t('card_error'), 404));
+
+  if (!mongoose.Types.ObjectId.isValid(tab_id))
+    return next(new ErrorHandler(req.t('tab_error'), 404));
 
   let tab = await Tab.findById(tab_id).populate({
     path: 'solutions',
