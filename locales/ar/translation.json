@@ -77,5 +77,7 @@
   "subject_error": "هذا الموضوع غير موجود",
   "subject_deleted": "تم حذف الموضوع بنجاح",
   "solution_schema_error": "موديل الحل غير موجود",
-  "solution_schema_deleted": "تم حذف موديل الحل بنجاح"
+  "solution_schema_deleted": "تم حذف موديل الحل بنجاح",
+  "privacy_and_cookies_error": "سياسة الخصوصية غير موجود",
+  "privacy_and_cookies_deleted": "تم حذف سياسة الخصوصية بنجاح"
 }

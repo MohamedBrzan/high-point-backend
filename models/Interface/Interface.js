@@ -133,6 +133,12 @@ const InterfaceSchema = new mongoose.Schema(
       vertical_logo: { type: String, required: true },
       horizontal_logo: { type: String, required: true },
       logo_img: { type: String, required: true },
+      map_text: {
+        colored_text: { type: String, required: true },
+        colored_text_ar: { type: String, required: true },
+        custom_text: { type: String, required: true },
+        custom_text_ar: { type: String, required: true },
+      },
       text: { type: String, required: true },
       text_ar: { type: String, required: true },
       brief: { type: String, required: true },

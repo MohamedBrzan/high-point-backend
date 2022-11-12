@@ -24,6 +24,7 @@ const SolutionsSolutionsRoutes = require('./routes/SolutionsSolutionsRoutes');
 const ContactUsRoutes = require('./routes/ContactUsRoutes');
 const PartnerRoutes = require('./routes/PartnerRoutes');
 const BlogRoutes = require('./routes/BlogRoutes');
+const PrivacyAndCookiesRoutes = require('./routes/PrivacyAndCookiesRoutes');
 const RequestRoutes = require('./routes/RequestRoutes');
 const NewsRoomRoutes = require('./routes/NewsRoomRoutes');
 const DocumentationRoutes = require('./routes/DocumentationRoutes');
@@ -85,6 +86,8 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(express.json({ limit: 16777216 }));
 app.use(express.urlencoded({ extended: true, limit: 16777216 }));
 app.use(cookieParser());
+
+app.use('/api/v1/privacy_cookies', PrivacyAndCookiesRoutes);
 
 app.use('/api/v1/services', ServicesRoutes);
 
